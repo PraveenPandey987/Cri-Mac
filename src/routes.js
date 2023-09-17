@@ -1,5 +1,7 @@
 import Home from "./pages/home";
-import Layout from "./components/Layout"
+import Layout from "./components/Layout";
+import MiddlewarePage from "./pages/MiddlewarePage";
+import Dashboard from "./pages/Dashboard";
 const Routes = [
   {
     path: "/",
@@ -8,20 +10,28 @@ const Routes = [
       {
         index: true,
         element: <Home />,
-      },     
-    //   {
-    //     path: "/matches",
-    //     children: [
-    //       {
-    //         index: true,
-    //         element: <Matches/>,
-    //       },
-    //       {
-    //         path: "/matches/:id",
-    //         element: <SpecificSportMatch/>,
-    //       },
-    //     ],
-    //   },
+      },
+      {
+        path: "/MiddlewarePages",
+        element: <MiddlewarePage />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      //   {
+      //     path: "/matches",
+      //     children: [
+      //       {
+      //         index: true,
+      //         element: <Matches/>,
+      //       },
+      //       {
+      //         path: "/matches/:id",
+      //         element: <SpecificSportMatch/>,
+      //       },
+      //     ],
+      //   },
     ],
   },
 ];
