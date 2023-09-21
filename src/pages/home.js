@@ -4,6 +4,7 @@ function home() {
   return (
     <div>
       <FormHome />
+      
     </div>
   );
 }
