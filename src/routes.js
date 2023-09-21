@@ -2,6 +2,11 @@ import Home from "./pages/home";
 import Layout from "./components/Layout";
 import MiddlewarePage from "./pages/MiddlewarePage";
 import Dashboard from "./pages/Dashboard";
+import UploadAlert from "./pages/UploadAlert";
+import Communications from "./pages/Communications";
+import SearchAlert from "./pages/SearchAlert";
+import StateAlertCount from "./pages/StateAlertCount";
+import Help from "./pages/Help";
 const Routes = [
   {
     path: "/",
@@ -18,6 +23,26 @@ const Routes = [
       {
         path: "/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/UploadAlert",
+        element: <UploadAlert />,
+      },
+      {
+        path: "/SearchAlert",
+        element: <SearchAlert />,
+      },
+      {
+        path: "/Communications",
+        element: <Communications />,
+      },
+      {
+        path: "/StateAlertCount",
+        element: <StateAlertCount />,
+      },
+      {
+        path: "/Help",
+        element: <Help />,
       },
       //   {
       //     path: "/matches",

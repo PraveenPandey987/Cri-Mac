@@ -1,6 +1,5 @@
 //This is the navbar for dashboard
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 
@@ -28,19 +27,51 @@ function Navbar2() {
             }}
           >
             <div style={{ color: "red", fontWeight: "bold" }}>Home</div>
-            <div style={{ color: "blue", fontWeight: "bold" }}>
-              Upload Alert
+            <div
+              style={{
+                color: "blue",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+            >
+              <Link to="/UploadAlert">Upload Alert</Link>
             </div>
-            <div style={{ color: "blue", fontWeight: "bold" }}>
-              Search Alert
+            <div
+              style={{
+                color: "blue",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+            >
+              <Link to="/SearchAlert">Search Alert</Link>
             </div>
-            <div style={{ color: "blue", fontWeight: "bold" }}>
-              Communication
+            <div
+              style={{
+                color: "blue",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+            >
+              <Link to="/Communications">Communications</Link>
             </div>
-            <div style={{ color: "blue", fontWeight: "bold" }}>
-              StateAlertCount
+            <div
+              style={{
+                color: "blue",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+            >
+              <Link to="/StateAlertCount">StateAlertCount</Link>
             </div>
-            <div style={{ color: "blue", fontWeight: "bold" }}>Help</div>
+            <div
+              style={{
+                color: "blue",
+                fontWeight: "bold",
+                textDecoration: "none",
+              }}
+            >
+              <Link to="/Help">Help</Link>
+            </div>
           </div>
         </Grid>
         <Grid
