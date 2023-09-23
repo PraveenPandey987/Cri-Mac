@@ -381,7 +381,7 @@ export const AlertCount = () => {
               fontSize: "1.2rem",
               color: "#0002fa !important",
               margin: "0",
-              alignItems: "center",
+              // alignItems: "center",
             }}
           >
             District Wise Alert Count
