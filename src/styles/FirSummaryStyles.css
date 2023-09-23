@@ -1,0 +1,8 @@
+.indBlock {
+  display: flex;
+  flex-wrap: wrap;
+}
+.heading {
+  font-weight: bold;
+  color: black;
+}
