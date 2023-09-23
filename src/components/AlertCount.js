@@ -367,30 +367,38 @@ export const AlertCount = () => {
           justifyContent: "center",
         }}
       >
-        <Button
-          variant="contained"
-          size="small"
-          style={{ backgroundColor: "#0002fa", color: "white" }}
-          endIcon={<SearchIcon />}
-        >
-          Search
-        </Button>
-
-        <h1
-          typography={{
-            fontSize: ".8rem",
-            color: "#0002fa",
-          }}
-        >
-          District Wise Alert Count
-        </h1>
+        <div style={{ display: "flex", margin: "1rem " }}>
+          <Button
+            variant="contained"
+            size="small"
+            style={{ backgroundColor: "#0002fa", color: "white" }}
+            endIcon={<SearchIcon />}
+          >
+            Search
+          </Button>
+          <p
+            style={{
+              fontSize: "1.2rem",
+              color: "#0002fa !important",
+              margin: "0",
+              alignItems: "center",
+            }}
+          >
+            District Wise Alert Count
+          </p>
+        </div>
 
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <Table
+            sx={{
+              minWidth: 700,
+            }}
+            aria-label="customized table"
+          >
             <TableHead>
               <TableRow>
                 <StyledTableCell>Sr. No.</StyledTableCell>
-                <StyledTableCell> district</StyledTableCell>
+                <StyledTableCell>District</StyledTableCell>
                 <StyledTableCell>Major Heinous Crimes</StyledTableCell>
                 <StyledTableCell>
                   Notorious Criminals (Arrested / Wanted)
