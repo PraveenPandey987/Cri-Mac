@@ -37,7 +37,7 @@ const Routes = [
         element: <Communications />,
       },
       {
-        path: "/StateAlertCount",
+        path: "/AlertCount",
         element: <StateAlertCount />,
       },
       {
