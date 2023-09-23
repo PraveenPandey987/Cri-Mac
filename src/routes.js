@@ -7,6 +7,7 @@ import Communications from "./pages/Communications";
 import SearchAlert from "./pages/SearchAlert";
 import StateAlertCount from "./pages/StateAlertCount";
 import Help from "./pages/Help";
+import FirSummary from "./pages/FirSummary";
 const Routes = [
   {
     path: "/",
@@ -43,6 +44,10 @@ const Routes = [
       {
         path: "/Help",
         element: <Help />,
+      },
+      {
+        path: "/FirSummary",
+        element: <FirSummary />,
       },
       //   {
       //     path: "/matches",
