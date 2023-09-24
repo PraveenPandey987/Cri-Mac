@@ -2,7 +2,7 @@ import Home from "./pages/home";
 import Layout from "./components/Layout";
 import MiddlewarePage from "./pages/MiddlewarePage";
 import Dashboard from "./pages/Dashboard";
-import UploadAlert from "./pages/UploadAlert";
+import UploadAlert from "./pages/UploadAlert/UploadAlert";
 import Communications from "./pages/Communications";
 import SearchAlert from "./pages/SearchAlert/SearchAlert";
 import StateAlertCount from "./pages/StateAlertCount";

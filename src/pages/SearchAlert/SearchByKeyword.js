@@ -27,10 +27,14 @@ function SearchByKeyword() {
                 </Grid>
                 <Grid item xs={8} style={{ padding: "1em 20px 1em 0" }}>
                     <select name="option" style={{ width: "103.5%", padding: "5px" , border: "1px solid #E0E9EC",}}>
-                        <option value="*" selected>All</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                        <option value="0" selected>All</option>
+                        <option value="1">Major Heinous Crimes</option>
+                        <option value="2">Notorious Criminals(Arrested/Wanted)</option>
+                        <option value="3">Important Seizure/Recoveries</option>
+                        <option value="4">Jail Releases of Notorious Criminals</option>
+                        <option value="5">Jail Breaks</option>
+                        <option value="6">Major Human Trafficking Recoveries</option>
+                        <option value="7">High Alerts/Hue & Cry Notices</option>
                     </select>
                 </Grid>
             </Grid>
