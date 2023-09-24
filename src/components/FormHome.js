@@ -3,7 +3,42 @@ import Grid from "@mui/material/Grid";
 import Login from "../assets/login.png";
 import Box from "@mui/material/Box";
 import Captcha from "../assets/captcha.jpg";
-function formhome() {
+import { useState } from "react";
+import { useNavigate } from "react-router-dom/dist";
+
+function Formhome() {
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [captcha, setCaptcha] = useState("");
+  const navigate = useNavigate();
+
+  async function handleSubmit() {
+    const confirmCaptcha = "CAPTCHA";
+    if (!username || !password || !captcha) {
+      alert("please enter all the fields");
+      return;
+    }
+    if (captcha !== confirmCaptcha) {
+      alert("incorrect captcha");
+      return;
+    }
+    let res = await fetch(`http://localhost:3080/api/user/login`, {
+      method: "post",
+      body: JSON.stringify({ username, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    res = await res.json();
+    if (!res.message) {
+      alert("invalid credentials");
+      return;
+    }
+    localStorage.setItem("stationName", res.stationName);
+    localStorage.setItem("token", res.token);
+    navigate("/dashboard");
+  }
+
   return (
     <>
       <Grid
@@ -62,6 +97,7 @@ function formhome() {
                     <Grid item xs={6}>
                       <input
                         type="text"
+                        onChange={(e) => setUserName(e.target.value)}
                         placeholder="Enter Username"
                         style={{
                           width: "100%",
@@ -82,6 +118,7 @@ function formhome() {
                     <Grid item xs={6}>
                       <input
                         type="text"
+                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter Password"
                         style={{
                           width: "100%",
@@ -128,6 +165,7 @@ function formhome() {
                 <input
                   type="text"
                   placeholder="Enter Captcha"
+                  onChange={(e) => setCaptcha(e.target.value)}
                   style={{
                     width: "100%",
                     boxSizing: "border-box",
@@ -161,6 +199,7 @@ function formhome() {
               padding: "0.6em 1em",
               border: "none",
             }}
+            onClick={handleSubmit}
           >
             Login <img src={Login} alt="" srcset="" />
           </button>
@@ -203,4 +242,4 @@ function formhome() {
   );
 }
 
-export default formhome;
+export default Formhome;

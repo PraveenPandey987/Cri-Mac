@@ -3,7 +3,8 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 
-function Navbar2() {
+function Navbar2(props) {
+  const stationName = props.stationName;
   return (
     <>
       <Grid
@@ -87,7 +88,7 @@ function Navbar2() {
           justifyContent={{ xs: "center" }}
           alignItems={{ xs: "center" }}
         >
-          User: <span style={{ color: "blue" }}>Yogesh Kumar</span>
+          User: <span style={{ color: "blue" }}>{stationName}</span>
         </Grid>
       </Grid>
     </>
