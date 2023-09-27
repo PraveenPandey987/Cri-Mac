@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import { AlertCount } from "../components/AlertCount";
 
 function StateAlertCount() {
-  return (
-    <div>StateAlertCount</div>
-  )
+  return <AlertCount />;
 }
 
-export default StateAlertCount
+export default StateAlertCount;
