@@ -2,9 +2,9 @@ import Home from "./pages/home";
 import Layout from "./components/Layout";
 import MiddlewarePage from "./pages/MiddlewarePage";
 import Dashboard from "./pages/Dashboard";
-import UploadAlert from "./pages/UploadAlert";
+import UploadAlert from "./pages/UploadAlert/UploadAlert";
 import Communications from "./pages/Communications";
-import SearchAlert from "./pages/SearchAlert";
+import SearchAlert from "./pages/SearchAlert/SearchAlert";
 import StateAlertCount from "./pages/StateAlertCount";
 import Help from "./pages/Help";
 import FirSummary from "./pages/FirSummary";
@@ -38,7 +38,7 @@ const Routes = [
         element: <Communications />,
       },
       {
-        path: "/StateAlertCount",
+        path: "/AlertCount",
         element: <StateAlertCount />,
       },
       {
