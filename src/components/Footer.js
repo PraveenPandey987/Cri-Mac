@@ -7,7 +7,7 @@ function Footer() {
         backgroundColor: "#E0E9EC",
         color: "red",
         fontWeight: "bold",
-      
+        padding:"2rem",
         position: "fixed",
         bottom: "0",
         left: "0",
