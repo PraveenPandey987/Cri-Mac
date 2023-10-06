@@ -47,10 +47,50 @@ function Communications() {
     
   };
 
+  const [fileInputs, setFileInputs] = useState([<input key={0} type="file" name="fileToUpload[]" onChange={handleEmailChange} />]);
+  const allowedFileTypes = [
+    '.jpg', '.jpeg', '.png', '.pdf', '.bmp', '.tif', '.doc', '.tiff', '.docx', '.txt', '.pdf', '.xlx', '.xlsx'
+  ];
+
+  const addFileInput = () => {
+    const newInputKey = fileInputs.length;
+    const newFileInput = <input key={newInputKey} type="file" name="fileToUpload[]" onChange={handleEmailChange}/>;
+    setFileInputs([...fileInputs, newFileInput]);
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    
+    if (file) {
+      const fileSizeInBytes = file.size;
+      const minSize = 2 * 1024; 
+      const maxSize = 1024 * 1024; 
+
+      if (fileSizeInBytes < minSize) {
+        alert('File is too small. Minimum size is 2KB.');
+        event.target.value = ''; 
+      } else if (fileSizeInBytes > maxSize) {
+        alert('File is too large. Maximum size is 1MB.');
+        event.target.value = ''; 
+      } else if (!allowedFileTypes.includes(file.name.split('.').pop().toLowerCase())) {
+        alert('Invalid file type. Allowed types are: .jpg, .jpeg, .png, .pdf, .bmp, .tif, .doc, .tiff, .docx, .txt, .pdf, .xlx, .xlsx');
+        event.target.value = ''; 
+      }
+    }
+  }
   return (
     <div>
-      <h4>Communications</h4>
-      <div>
+      <h3 style={{
+              marginLeft:"0rem",
+              marginTop:"1.1rem",
+              color:"blue",
+              textAlign:"center"
+              }}>Communication</h3>
+      <div style={{
+              marginLeft:"0rem",
+              marginTop:"1.1rem",
+              textAlign:"center"
+              }}>
         <label>
           <input
             type="radio"
@@ -73,7 +113,7 @@ function Communications() {
         </label>
        </div >
        <div style={{
-      margin: '5px 100px 5px 100px',
+      margin: '0px 100px 5px 100px',
       padding:'0px 10px 10px 10px',
       border: '2px solid #C0C0C0'
     }}>
@@ -86,8 +126,14 @@ function Communications() {
               background:'#E5E4E2'
             }}>Email</h4>
           <div>
-           <label>To</label>
-            <select name="state" onChange={handleEmailChange} required>
+           <label style={{
+              marginTop:"2rem"
+              }}>To</label>
+              <div style={{
+              marginLeft:"16rem",
+              marginTop:"0rem"
+              }}>
+            <select name="state" onChange={handleEmailChange} required style={{marginRight:"1rem"}}>
               
               <option value="">Select State</option>
             </select>
@@ -96,21 +142,28 @@ function Communications() {
               
               <option value="">Select District</option>
             </select>
-            <div>
-            <select name="policeStation" onChange={handleSmsChange} required>
+            </div>
+            <div style={{
+              marginLeft:"16rem",
+              marginTop:"1.1rem"
+              }}>
+            <select name="policeStation" onChange={handleSmsChange} required style={{marginRight:"1rem"}}>
               
               <option value="">Select Police Station</option>
             </select>
             <select name="phoneNo." onChange={handleSmsChange} required>
               
-              <option value="">Select Recipent's Phone No.</option>
+              <option value="" style={{marginLeft:"30rem"}}>Select Recipent's Phone No.</option>
             </select>
             
             </div>
            
           </div>
           
-          <div>
+          <div style={{
+              marginLeft:"16rem",
+              marginTop:"1.1rem"
+              }}>
             
             <input
               type="email"
@@ -120,9 +173,12 @@ function Communications() {
               onChange={handleEmailChange}
               required
             />
+            <h5 style={{marginTop:"0.1rem"}}>1.(Multiple E-mail addresses can be seprated by comma ",") 2. Duplicate E-mail adresses will be remove automatically</h5>
           </div>
           <div>
-            <label>Subject:</label>
+            <label style={{
+              marginRight:"12.8rem"
+              }}>Subject:</label>
             <input
               type="text"
               name="subject"
@@ -131,28 +187,87 @@ function Communications() {
               onChange={handleEmailChange}
               required
             />
-          </div>
+          </div><br/>
           <div>
-            <label>Message:</label>
+            <label style={{
+              marginRight:"12.1rem",
+              marginBottom:"5rem",
+              }}>Message:</label>
             <textarea
+            
               name="message"
               value={emailState.message}
               placeholder='Content'
+              rows={5} 
+              cols={60}
               onChange={handleEmailChange}
+              
               required
             ></textarea>
-          </div>
+          </div><br/>
           <div>
             <label>Attachment:</label>
-            <input
-              type="file"
-              accept=".jpg, .jpeg, .png, .pdf, .bmp, .tif, .doc, .tiff, .docx, .txt, .pdf, .xlx, .xlsx"
-              onChange={handleEmailAttachmentChange}
-            />
+            <div style={{
+              marginLeft:"16rem",
+              
+            }}>
+              <form action="upload.php" method="post" encType="multipart/form-data">
+                <div id="fileInputs" >
+                  {fileInputs.map((input, index) => (
+                    <div key={index} style={{
+                      border:"2px solid #C0C0C0 ",
+                      borderBlockEndWidth:"30%",
+                    padding:"0.4 0.4 0.2 0.2"}}>
+                      {index+1}.{input}
+                      
+                    </div>
+                   
+                  ))}
+                </div>
+                <button type="button" onClick={addFileInput} style={{
+                  color:"white",
+                  marginTop:"0.2rem",
+                  background:"green",
+                  border:"1px solid green",
+                  borderRadius:"5%",
+                  padding:"0.5rem 2.4rem"
+                }}>Add </button>
+                
+              </form>
+            </div>
+  
+            <h5 style={{
+              marginLeft:"16rem",
+              marginTop:"0.1rem"}}>*Minimum 2KB size of file uploaded.<br/>
+              *Maximum 1MB size of file uploaded.<br/>
+              *Only ".jpg, .jpeg, .png, .pdf, .bmp, .tif, .doc, .tiff, .docx, .txt, .pdf, .xlx, .xlsx" type file can be uploaded.
+            </h5>
           </div>
-          <div>
-            <button type="submit">Send </button>
-            <button type='reset'>Reset</button>
+          <br/><br/>
+          <div style={{
+              marginBottom:"0",
+              padding:"0.7rem",
+              background:'#E5E4E2',
+              
+            }}>
+            <button type="submit" style={{
+              background:"blue",
+              color:"white",
+              textDecorationColor:"white",
+              padding:"0.3rem",
+              marginRight:"1.1rem",
+              border:"0.1rem solid blue",
+              borderRadius:"12%"
+              }}>Send </button>
+            <button type='reset'style={{
+              background:"red",
+              color:"white",
+              textDecorationColor:"white",
+              padding:"0.3rem",
+              marginRight:"1.1rem",
+              border:"0.1rem solid red",
+              borderRadius:"12%"
+              }}>Reset</button>
           </div>
         </form>
       ) : (
@@ -165,19 +280,27 @@ function Communications() {
             }}>SMS</h4>
           <div >
             <label>Phone Number</label>
-            <select name="state" onChange={handleSmsChange} required>
+            <select name="state" onChange={handleSmsChange} required style={{
+              marginTop:"0.1rem",
+              marginLeft:"9.3rem",
+              marginRight:"1rem"
+              }}>
               
               <option value="">Select State</option>
             </select>
-            <select name="district" onChange={handleSmsChange} required>
+            <select name="district" onChange={handleSmsChange} required 
+              >
               
               <option value="">Select District</option>
             </select>
           </div>
           
-          <div>
+          <div style={{
+              marginTop:"0.1rem",
+              marginLeft:"16rem"
+              }}>
            
-            <select name="policeStation" onChange={handleSmsChange} required>
+            <select name="policeStation" onChange={handleSmsChange} required style={{marginRight:"1rem"}}>
               
               <option value="">Select Police Station</option>
             </select>
@@ -196,8 +319,17 @@ function Communications() {
               placeholder="Recipent's Phone no."
               value={emailState.email}
               onChange={handleEmailChange}
+              cols={40}
               required
+              style={{
+                marginTop:"1rem",
+                marginLeft:"16rem"
+                }}
             />
+            <h5 style={{
+              marginTop:"0.1rem",
+              marginLeft:"16rem"
+              }}>1.(Multiple phone numbers can be seprated by comma ",") 2. Duplicate phone numbers will be remove automatically</h5>
           </div>
           <div>
             <label>Message</label>
@@ -206,12 +338,39 @@ function Communications() {
               value={smsState.content}
               placeholder='Content'
               onChange={handleSmsChange}
+              rows={5}
+              cols={60}
               required
+              style={{
+                marginLeft:"12.1rem"
+              }}
             ></textarea>
+            
           </div>
-          <div>
-            <button type="submit">Send </button>
-            <button type='reset'>Reset</button>
+          <div style={{
+              marginBottom:"0",
+              padding:"0.7rem ",
+              background:'#E5E4E2',
+              
+            }}>
+          <button type="submit" style={{
+              background:"blue",
+              color:"white",
+              textDecorationColor:"white",
+              padding:"0.3rem",
+              marginRight:"1.1rem",
+              border:"0.1rem solid blue",
+              borderRadius:"12%"
+              }}>Send </button>
+            <button type='reset'style={{
+              background:"red",
+              color:"white",
+              textDecorationColor:"white",
+              padding:"0.3rem",
+              marginRight:"1.1rem",
+              border:"0.1rem solid red",
+              borderRadius:"12%"
+              }}>Reset</button>
           </div>
         </form>
       )}
@@ -219,5 +378,6 @@ function Communications() {
     </div>
   );
 }
+
 
 export default Communications;
